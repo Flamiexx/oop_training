@@ -2,9 +2,9 @@ class Engine:
     def __init__(self, power):
         self.power = power
         self.chassis = {
-            'Easy': 0.5,    # Пример: Easy - 50% в виде доли (0.5)
-            'Middle': 0.3,  # Пример: Middle - 30% в виде доли (0.3)
-            'Heavy': 0.2    # Пример: Heavy - 20% в виде доли (0.2)
+            'Easy': 0.5,    # посадка 100%, копание 10%, культивация 20%
+            'Middle': 0.3,  # посадка 100%, копание 20%, культивация 100%
+            'Heavy': 0.2    # для всего 100%
         }
 
     def get_processing_speed(self, chassis_type):

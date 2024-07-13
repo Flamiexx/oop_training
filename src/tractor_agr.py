@@ -1,3 +1,6 @@
+from src.working_type import WorkingTypeOfTractor
+
+
 class TractorFinder:
     @staticmethod
     def find_tractor_on_field_by_id(field, tractor_id):
@@ -12,10 +15,15 @@ class TractorFinder:
         work_distribution = {}
 
         for tractor in field.tractors:
-            work_distribution[tractor.name] = (tractor.processing_speed / total_speed) * 100
+            working_power = tractor.get_working_power()
+            work_distribution[tractor.name] = {
+                'digging': (working_power['digging'] / total_speed) * 100,
+                'sow': (working_power['sow'] / total_speed) * 100,
+                'cultivation': (working_power['cultivation'] / total_speed) * 100
+            }
 
-        for tractor_name, percentage in work_distribution.items():
-            print(f"{tractor_name} will work on {percentage:.2f}% of the field.")
+        for tractor_name, work in work_distribution.items():
+            print(f"{tractor_name} work distribution: Digging {work['digging']:.2f}%, Sow {work['sow']:.2f}%, Cultivation {work['cultivation']:.2f}%")
         return work_distribution
 
     @staticmethod
@@ -27,3 +35,4 @@ class TractorFinder:
             return time_to_process
         else:
             raise ValueError("No tractors found on the field.")
+
