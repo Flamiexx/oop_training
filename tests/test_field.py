@@ -1,7 +1,7 @@
 import unittest
 from src.field import Field
 from src.tractor import Tractor
-from src.engine_and_chassis import Engine  # Make sure to import from the correct module
+from src.engine_service import Engine  # Make sure to import from the correct module
 
 
 class TestField(unittest.TestCase):

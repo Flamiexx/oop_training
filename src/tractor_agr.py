@@ -1,4 +1,4 @@
-from src.working_type import WorkingTypeOfTractor
+from src.work import Work
 
 
 class TractorFinder:
@@ -35,4 +35,3 @@ class TractorFinder:
             return time_to_process
         else:
             raise ValueError("No tractors found on the field.")
-
