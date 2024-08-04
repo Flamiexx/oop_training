@@ -4,6 +4,7 @@ from src.tractor_service import TractorService
 from src.work import Work
 from src.field import Field
 from src.chassis import Chassis
+from src.work_service import WorkService
 
 
 field1 = Field("Field1", 150, 1)
@@ -20,12 +21,13 @@ tractor2 = Tractor("Tractor1", engine3, chassis1, 'Easy', 1, work1, 'Sowing')
 
 
 tractor_service = TractorService()
-speed1 = tractor_service.calculate_speed(tractor1)
-speed2 = tractor_service.calculate_speed(tractor2)
-speed3 = tractor_service.calculate_speed(tractor3)
-print(f"The speed of {tractor1.name} is {speed1}")
-print(f"The speed of {tractor2.name} is {speed2}")
-print(f"The speed of {tractor3.name} is {speed3}")
+work_service = WorkService()
+speed1 = tractor_service.calculate_speed(tractor1, work_service)
+speed2 = tractor_service.calculate_speed(tractor2, work_service)
+speed3 = tractor_service.calculate_speed(tractor3, work_service)
+print(f"The speed of {tractor1} is {speed1}")
+print(f"The speed of {tractor2} is {speed2}")
+print(f"The speed of {tractor3} is {speed3}")
 # chassis = Chassis('Easy')
 # engine1 = Engine(3000)
 # engine2 = Engine(400)
@@ -40,7 +42,7 @@ print(f"The speed of {tractor3.name} is {speed3}")
 # work_type = 'Digging'
 # speed = tractor_service.calculate_speed(tractor1)
 # print(f"Speed of {tractor1.name} for {work_type}: {speed}")
-#
+# 
 
 # field1.add_tractor(tractor1)
 # field1.add_tractor(tractor2)
