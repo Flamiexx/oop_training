@@ -7,13 +7,6 @@ from src.engine_service import Engine
 
 
 class TractorService:
-    # @staticmethod
-    # def find_tractor_on_field_by_id(field, tractor_id):
-    #     for tractor in field.tractors:
-    #         if tractor.id == tractor_id:
-    #             return tractor
-    #     return None
-
     @staticmethod
     def calculate_speed(tractor):
         chassis_factor = tractor.chassis.get_chassis_factor(tractor.chassis_type)
@@ -24,10 +17,8 @@ class TractorService:
 
         speed = (tractor.engine.get_power() * chassis_factor) / work_factor
 
-        # Check if speed exceeds the maximum allowed speed for the chassis type
         max_speed = tractor.chassis.get_max_speed(tractor.chassis_type)
         if speed > max_speed:
-            raise ValueError(
-                f"Calculated speed {speed:.2f} exceeds the maximum allowed speed {max_speed} for chassis type '{tractor.chassis_type}'")
+            raise ValueError(f"Calculated speed {speed:.2f} exceeds the maximum allowed speed {max_speed} for chassis type '{tractor.chassis_type}'")
 
         return speed

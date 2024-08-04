@@ -23,9 +23,9 @@ tractor_service = TractorService()
 speed1 = tractor_service.calculate_speed(tractor1)
 speed2 = tractor_service.calculate_speed(tractor2)
 speed3 = tractor_service.calculate_speed(tractor3)
-print(f"The speed of {tractor1.name} is {speed1}")
-print(f"The speed of {tractor2.name} is {speed2}")
-print(f"The speed of {tractor3.name} is {speed3}")
+print(f"The speed of {tractor1} is {speed1}")
+print(f"The speed of {tractor2} is {speed2}")
+print(f"The speed of {tractor3} is {speed3}")
 # chassis = Chassis('Easy')
 # engine1 = Engine(3000)
 # engine2 = Engine(400)
@@ -40,7 +40,7 @@ print(f"The speed of {tractor3.name} is {speed3}")
 # work_type = 'Digging'
 # speed = tractor_service.calculate_speed(tractor1)
 # print(f"Speed of {tractor1.name} for {work_type}: {speed}")
-#
+# 
 
 # field1.add_tractor(tractor1)
 # field1.add_tractor(tractor2)

@@ -1,13 +1,13 @@
 class Field:
     def __init__(self, name, size, id):
-        self.size = size
-        self.name = name
-        self.id = id
-        self.tractors = []
+        self.__size = size
+        self.__name = name
+        self.__id = id
+        self.__tractors = []
 
     def add_tractor(self, tractor):
 
-        if len(self.tractors) < 4:
-            self.tractors.append(tractor)
+        if len(self.__tractors) < 4:
+            self.__tractors.append(tractor)
 
 

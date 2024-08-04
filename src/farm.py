@@ -4,12 +4,12 @@ from .tractor import Tractor
 
 class Farm:
     def __init__(self, id):
-        self.id = id
-        self.fields = []
-        self.tractors = []
+        self.__id = id
+        self.__fields = []
+        self.__tractors = []
 
     def add_field(self, field):
-        self.fields.append(field)
+        self.__fields.append(field)
 
     def add_tractor(self, tractor):
-        self.tractors.append(tractor)
+        self.__tractors.append(tractor)
