@@ -4,9 +4,22 @@ from src.field import Field
 from src.chassis import Chassis
 from src.tractor import Tractor
 from src.engine_service import Engine
+from src.db_sqlite import Database
 
 
 class TractorService:
+    def __init__(self, db):
+        self.db = db
+
+    def add_tractor(self, name, engine_id, chassis_id, work_id):
+        query = 'INSERT INTO tractors (name, engine_id, chassis_id, work_id) VALUES (?, ?, ?, ?)'
+        self.db.execute_query(query, (name, engine_id, chassis_id, work_id,))
+
+    def get_tractor(self, tractor_id):
+        query = 'SELECT * FROM tractors WHERE id = ?'
+        result = self.db.fetch_all(query, (tractor_id,))
+        return result[0] if result else None
+
     @staticmethod
     def calculate_speed(tractor, work_service):
         chassis_factor = tractor.chassis.get_chassis_factor(tractor.chassis_type)

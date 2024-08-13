@@ -1,32 +1,37 @@
-from src.tractor import Tractor
-from src.engine_service import Engine
-from src.tractor_service import TractorService
-from src.work import Work
-from src.field import Field
-from src.chassis import Chassis
-from src.work_service import WorkService
+from src.db_sqlite import Database
 from src.engine_service import EngineService
+from src.chassis_service import ChassisService
+from src.work_service import WorkService
+from src.tractor_service import TractorService
 
+# Инициализация базы данных
+db = Database('tractors.db')
+db.create_tables()
 
-field1 = Field("Field1", 150, 1)
-engine1 = Engine(3000)
-# engine2 = Engine(3000)
-# engine3 = Engine(3000)
-chassis1 = Chassis()
-work1 = Work()
-engine_service = EngineService()
+# Инициализация сервисов
+engine_service = EngineService(db)
+chassis_service = ChassisService(db)
+work_service = WorkService(db)
+tractor_service = TractorService(db)
 
-tractor1 = Tractor("Tractor1", engine1, chassis1, 'Heavy', 1, work1, 'Sowing')
-# tractor2 = Tractor("Tractor1", engine2, chassis1, 'Middle', 1, work1, 'Sowing')
-# tractor3 = Tractor("Tractor1", engine3, chassis1, 'Easy', 1, work1, 'Sowing')
-engine_service.increase_power(engine1, 6)
+# Добавление данных
+engine_service.add_engine(100)
+chassis_service.add_chassis('Heavy', 0.2)
+work_service.add_work('Digging', 15)
 
-tractor_service = TractorService()
-work_service = WorkService()
+# Получение данных по идентификатору
+engine = engine_service.get_engine(1)
+chassis = chassis_service.get_chassis(1)
+work = work_service.get_work(1)
 
-speed1 = tractor_service.calculate_speed(tractor1, work_service)
-# speed2 = tractor_service.calculate_speed(tractor2, work_service)
-# speed3 = tractor_service.calculate_speed(tractor3, work_service)
-print(f"The speed of {tractor1.name} is {speed1}")
-# print(f"The speed of {tractor2.name} is {speed2}")
-# print(f"The speed of {tractor3.name} is {speed3}")
+print(engine)  # Output: (1, 100)
+print(chassis)  # Output: (1, 'Heavy', 0.2)
+print(work)    # Output: (1, 'Digging', 15)
+
+# Добавление трактора
+tractor_service.add_tractor('Tractor1', 1, 1, 1)
+
+tractor = tractor_service.get_tractor(1)
+print(tractor)  # Output: (1, 'Tractor1', 1, 1, 1)
+
+db.close()

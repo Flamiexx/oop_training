@@ -1,15 +1,20 @@
 from src.work import Work
+from src.db_sqlite import Database
 
 
 class WorkService:
-    def __init__(self):
+    def __init__(self, db):
+        self.db = db
         self.work = Work()
 
-    def add_work(self, work_type, factor):
-        """Add a new type of work with its efficiency factor."""
-        if work_type in self.work.work:
-            raise ValueError(f"Work type '{work_type}' already exists.")
-        self.work.work[work_type] = factor
+    def add_work(self, work_type, efficiency):
+        query = 'INSERT INTO works (work_type, efficiency) VALUES (?, ?)'
+        self.db.execute_query(query, (work_type, efficiency,))
+
+    def get_work(self, work_id):
+        query = 'SELECT * FROM works WHERE id = ?'
+        result = self.db.fetch_all(query, (work_id,))
+        return result[0] if result else None
 
     def update_work_factor(self, work_type, new_factor):
         """Update the efficiency factor of an existing type of work."""
