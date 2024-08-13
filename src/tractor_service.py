@@ -19,6 +19,7 @@ class TractorService:
 
         max_speed = tractor.chassis.get_max_speed(tractor.chassis_type)
         if speed > max_speed:
-            raise ValueError(f"Calculated speed {speed:.2f} exceeds the maximum allowed speed {max_speed} for chassis type '{tractor.chassis_type}'")
+            raise ValueError(f"Calculated speed {speed:.2f} exceeds the maximum allowed speed {max_speed} "
+                             f"for chassis type '{tractor.chassis_type}'")
 
         return speed
